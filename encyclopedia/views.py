@@ -1,5 +1,3 @@
-import markdown2 as mk
-
 from django.shortcuts import render
 
 from . import util
@@ -13,6 +11,6 @@ def index(request):
 def entry(request, entry):
     return render(request, "encyclopedia/entry.html", {
         "entrytitle": entry.capitalize(),
-        "entry": mk.markdown(util.get_entry(entry))
+        "entry": util.get_entry(entry)
     })
 
