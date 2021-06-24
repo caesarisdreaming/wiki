@@ -2,7 +2,11 @@ import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect, request
 
+from . import views
+from django.urls import reverse
 
 def list_entries():
     """
@@ -34,4 +38,5 @@ def get_entry(title):
         f = default_storage.open(f"entries/{title}.md")
         return f.read().decode("utf-8")
     except FileNotFoundError:
-        return None
+        print('tow')
+        return HttpResponseRedirect(reverse("encyclopedia:entry_not_found"))

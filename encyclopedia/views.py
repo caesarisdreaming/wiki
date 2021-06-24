@@ -1,5 +1,6 @@
-from django.shortcuts import render
+import markdown2 as mk
 
+from django.shortcuts import render
 from . import util
 
 
@@ -14,3 +15,5 @@ def entry(request, entry):
         "entry": util.get_entry(entry)
     })
 
+def entry_not_found(request):
+    return render(request, "encyclopedia/entry_not_found.html")
