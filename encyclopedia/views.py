@@ -16,3 +16,6 @@ def entry(request, entry):
         "entry": mk.markdown(util.get_entry(entry))
     })
 
+def error404(request):
+    return render(request, "encyclopedia/error404.html")
+
