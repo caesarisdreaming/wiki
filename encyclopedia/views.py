@@ -12,8 +12,10 @@ def index(request):
 def entry(request, entry):
     return render(request, "encyclopedia/entry.html", {
         "entrytitle": entry.capitalize(),
-        "entry": util.get_entry(entry)
+        "entry": mk.markdown(util.get_entry(entry))
     })
 
-def entry_not_found(request):
-    return render(request, "encyclopedia/entry_not_found.html")
+def handler404(request, exception):
+    return render(request, "encyclopedia/entry_not_found.html", {
+        "entry": request.path.replace("/", "")
+    })
